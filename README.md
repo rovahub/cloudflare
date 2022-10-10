@@ -1,9 +1,9 @@
-# Cloudflare panel
+# Cloudflare DNS partner
 
 ## Installation
 
 ```bash
-composer require rovahub/cloudflare-panel
+composer require rovahub/cloudflare
 ```
 
 For version <= 5.4:

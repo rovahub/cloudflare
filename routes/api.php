@@ -1,5 +1,5 @@
 <?php
 
-Route::group(['middleware' => 'api', 'prefix' => 'api'], function () {
+Route::group(['middleware' => 'api', 'prefix' => 'cloudflare/api'], function () {
 
 });
