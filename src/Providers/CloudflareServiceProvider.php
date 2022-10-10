@@ -3,6 +3,8 @@
 namespace Rovahub\Cloudflare\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use File;
+use Rovahub\Cloudflare\Http\Middleware\ForceJsonResponseMiddleware;
 
 class CloudflareServiceProvider extends ServiceProvider
 {
@@ -20,5 +22,12 @@ class CloudflareServiceProvider extends ServiceProvider
             $this->publishes([__DIR__ . '/../../config/cloudflare.php' => config_path('cloudflare.php')], 'config');
             $this->publishes([__DIR__ . '/../../resources/views' => resource_path('views/vendor/assets')], 'views');
         }
+    }
+
+    public function register()
+    {
+        File::requireOnce(__DIR__ . '/../../helpers/common.php');
+        $router = $this->app['router'];
+        $router->aliasMiddleware('cloudflare-api', ForceJsonResponseMiddleware::class);
     }
 }

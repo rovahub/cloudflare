@@ -1,1 +1,1 @@
-<?php
+@extends('cloudflare::layouts.master')

@@ -1,7 +1,9 @@
 <?php
 
-Route::group(['prefix' => 'cloudflare', 'prefix' => 'cloudflare'], function () {
-    Route::get('test', function () {
-        return 'sadasd';
+use Rovahub\Cloudflare\Http\Controllers\AuthController;
+
+Route::group(cloudflare_route_group(), function () {
+    Route::group(['prefix' => 'auth'], function () {
+        Route::get('signin', [AuthController::class, 'signin'])->name('cloudflare:signin');
     });
 });
