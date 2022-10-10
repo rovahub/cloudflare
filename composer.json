@@ -1,0 +1,49 @@
+{
+    "name": "rovahub/cloudflare-panel",
+    "description": "Laravel dns management cloudflare for partner",
+    "license": "MIT",
+    "keywords": [
+        "rovahub",
+        "rovahub technologies",
+        "rovahub cloudflare panel"
+    ],
+    "homepage": "https://rovahub.com",
+    "authors": [
+        {
+            "name": "Quy Nguyen",
+            "email": "contact@ngocquy.net"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3|^8.0|^8.1",
+        "laravel/framework": "^5.6|^6|^7|^8|^9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.1|^7.0|^8.0|^9.0",
+        "mockery/mockery": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rovahub\\Cloudflare\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rovahub\\Cloudflare\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rovahub\\Cloudflare\\Providers\\CloudflareServiceProvider"
+            ],
+            "aliases": {
+                "Cloudflare": "Rovahub\\Cloudflare\\Facades\\CloudflareFacade"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
