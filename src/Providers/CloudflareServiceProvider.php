@@ -28,6 +28,6 @@ class CloudflareServiceProvider extends ServiceProvider
     {
         File::requireOnce(__DIR__ . '/../../helpers/common.php');
         $router = $this->app['router'];
-        $router->aliasMiddleware('cloudflare-api', ForceJsonResponseMiddleware::class);
+        $router->aliasMiddleware('cloudflare:api', ForceJsonResponseMiddleware::class);
     }
 }
