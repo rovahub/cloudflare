@@ -12,7 +12,7 @@ if (!function_exists('cloudflare_prefix')) {
 if (!function_exists('cloudflare_route_group')) {
     function cloudflare_route_group($type = null)
     {
-        $domain = config('cloudflare.cloudflare_panel_domain');
+        $domain = config('cloudflare.panel_domain');
         $prefix = cloudflare_prefix($type);
         if ($domain) {
             return [
