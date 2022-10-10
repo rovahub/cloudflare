@@ -1,7 +1,7 @@
 <?php
 return [
-    'cloudflare_api' => env('CLOUDFLARE_API', null),
-    'cloudflare_panel_domain' => env('CLOUDFLARE_PANEL_DOMAIN', null),
-    'cloudflare_panel_path' => env('CLOUDFLARE_PANEL_PATH', 'cloudflare'),
-    'cloudflare_panel_api_key' => env('CLOUDFLARE_PANEL_API_KEY', null)
+    'api_key' => env('CLOUDFLARE_API', null),
+    'panel_domain' => env('CLOUDFLARE_PANEL_DOMAIN', null),
+    'panel_path' => env('CLOUDFLARE_PANEL_PATH', 'cloudflare'),
+    'panel_admin_key' => env('CLOUDFLARE_PANEL_ADMIN_KEY', null)
 ];
