@@ -1,4 +1,4 @@
-# Cloudflare DNS partner
+# Cloudflare DNS partner panel
 
 ## Installation
 
