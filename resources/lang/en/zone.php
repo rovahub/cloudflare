@@ -1,0 +1,21 @@
+<?php
+return [
+    'domain' => 'Zones',
+    'registrar' => 'Registrar',
+    'created_on' => 'Created on',
+    'status' => 'Status',
+    'actions' => 'Actions',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'unknown' => 'Unknown',
+    'enabled' => 'Enabled',
+    'disabled' => 'Disabled',
+    'delete' => 'Purge',
+    'close' => 'Close',
+    'confirm' => 'Confirm',
+    'delete_cache_title' => 'Purge cache',
+    'delete_cache_content' => 'Purge all cached files. Purging your cache may slow your website temporarily.',
+    'enable_cloudflare' => 'Enable Cloudflare',
+    'pause_cloudflare_title' => 'Are you sure you want to pause',
+    'pause_cloudflare_content' => 'Pausing Cloudflare stops traffic from passing through our network, making your origin server IP address visible. Also, Cloudflare’s security and protection features become disabled. As an alternative, consider Development Mode to bypass caching while preserving security and protection.',
+];

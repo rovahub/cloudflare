@@ -1,0 +1,21 @@
+<?php
+    return [
+        'domain' => 'Tên miền',
+        'registrar' => 'Nhà cung cấp',
+        'created_on' => 'Thời gian tạo',
+        'status' => 'Tình trạng',
+        'actions' => 'Thao tác',
+        'active' => 'Đã kích hoạt',
+        'inactive' => 'Chưa kích hoạt',
+        'unknown' => 'Không xác định',
+        'enabled' => 'Đang bật',
+        'disabled' => 'Đang tắt',
+        'delete' => 'Xoá ngay',
+        'close' => 'Đóng',
+        'confirm' => 'Xác nhận',
+        'delete_cache_title' => 'Xoá bộ nhớ đệm',
+        'delete_cache_content' => 'Xóa bộ nhớ đệm có thể làm chậm trang web của bạn tạm thời.',
+        'enable_cloudflare' => 'Bật Cloudflare',
+        'pause_cloudflare_title' => 'Bạn có chắc chắn muốn tạm dừng',
+        'pause_cloudflare_content' => 'Việc tạm dừng Cloudflare sẽ ngăn không cho lưu lượng truy cập qua mạng của chúng tôi, giúp hiển thị địa chỉ IP máy chủ gốc của bạn. Ngoài ra, các tính năng bảo mật và bảo vệ của Cloudflare cũng bị vô hiệu hóa. Thay vào đó, hãy xem xét Chế độ phát triển để bỏ qua bộ nhớ đệm trong khi vẫn bảo mật và bảo vệ.',
+    ];

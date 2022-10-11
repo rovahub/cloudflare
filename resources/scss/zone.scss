@@ -1,0 +1,37 @@
+body {
+    background-color: #f4f6f8;
+}
+.table {
+    background-color: white;
+    -webkit-box-shadow: 0 0 35px 0 rgb(154 161 171 / 15%);
+    box-shadow: 0 0 35px 0 rgb(154 161 171 / 20%);
+    font-size: 14px;
+    thead {
+        background-color: #009ef7;
+        color: white;
+        th {
+            border: none;
+            padding: 15px 10px;
+            text-transform: uppercase;
+            &:first-child {
+                border-top-left-radius: 5px;
+            }
+            &:last-child {
+                border-top-right-radius: 5px;
+            }
+        }
+    }
+}
+tbody {
+    border-top: none !important;
+    tr {
+        border-bottom: 1px solid #eceff1;
+        &:last-child {
+            border: none;
+        }
+        td {
+            border: none;
+            vertical-align: middle;
+        }
+    }
+}

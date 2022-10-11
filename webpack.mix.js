@@ -1,6 +1,4 @@
 const mix = require('laravel-mix');
-const webpack = require('webpack');
-const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -23,22 +21,8 @@ mix.options({
     },
 })
     .setPublicPath('public')
-    .js('resources/js/app.js', 'public')
-    .vue()
-    .sass('resources/sass/app.scss', 'public')
-    .sass('resources/sass/app-dark.scss', 'public')
-    .version()
-    .webpackConfig({
-        resolve: {
-            symlinks: false,
-            alias: {
-                '@': path.resolve(__dirname, 'resources/js/'),
-            },
-        },
-        plugins: [
-            new webpack.IgnorePlugin({
-                resourceRegExp: /^\.\/locale$/,
-                contextRegExp: /moment$/,
-            }),
-        ],
-    });
+    .js('resources/js/datatables-simple-demo.js', 'public')
+    .js('resources/js/scripts.js', 'public')
+    .css('resources/css/styles.css', 'public')
+    .sass('resources/scss/zone.scss', 'public')
+    .version();

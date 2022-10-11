@@ -5,7 +5,11 @@ namespace Rovahub\Cloudflare\Providers;
 use File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Rovahub\Cloudflare\Facades\AssetsFacade;
+use Rovahub\Cloudflare\Facades\CloudflareFacade;
+use Rovahub\Cloudflare\Facades\TitleFacade;
 use Rovahub\Cloudflare\Http\Middleware\ForceJsonResponseMiddleware;
+use Illuminate\Foundation\AliasLoader;
 
 class CloudflareServiceProvider extends ServiceProvider
 {
@@ -20,15 +24,13 @@ class CloudflareServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::middlewareGroup('cloudflare', config('cloudflare.middleware', []));
-        Route::middlewareGroup('cloudflare:api', [
-            ForceJsonResponseMiddleware::class
-        ]);
-
+        $this->registerAliasLoader();
+        $this->registerMiddleware();
         $this->registerRoutes();
         $this->registerMigrations();
 
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'cloudflare');
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'cloudflare');
     }
 
     public function register()
@@ -47,11 +49,19 @@ class CloudflareServiceProvider extends ServiceProvider
         });
     }
 
+    private function registerAliasLoader()
+    {
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Cloudflare', CloudflareFacade::class);
+        $loader->alias('Title', TitleFacade::class);
+        $loader->alias('Assets', AssetsFacade::class);
+    }
+
     private function routeConfiguration($api = false)
     {
         $routeConfigs = [
             'namespace' => 'Rovahub\Cloudflare\Http\Controllers',
-            'prefix' => $api ?  'api' : config('cloudflare.path'),
+            'prefix' => $api ? 'api' : config('cloudflare.path'),
             'middleware' => $api ? 'cloudflare:api' : 'cloudflare'
         ];
         if (!$api) {
@@ -65,7 +75,16 @@ class CloudflareServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__ . '/../database/migrations' => database_path('migrations')], 'migrations');
             $this->publishes([__DIR__ . '/../../config/cloudflare.php' => config_path('cloudflare.php')], 'config');
+            $this->publishes([__DIR__ . '/../../public' => public_path('vendor/cloudflare')], 'assets');
         }
+    }
+
+    private function registerMiddleware()
+    {
+        Route::middlewareGroup('cloudflare', config('cloudflare.middleware', []));
+        Route::middlewareGroup('cloudflare:api', [
+            ForceJsonResponseMiddleware::class
+        ]);
     }
 
     private function registerMigrations()

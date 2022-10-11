@@ -1,0 +1,38 @@
+body {
+  background-color: #f4f6f8;
+}
+
+.table {
+  background-color: white;
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.2);
+  font-size: 14px;
+}
+.table thead {
+  background-color: #009ef7;
+  color: white;
+}
+.table thead th {
+  border: none;
+  padding: 15px 10px;
+  text-transform: uppercase;
+}
+.table thead th:first-child {
+  border-top-left-radius: 5px;
+}
+.table thead th:last-child {
+  border-top-right-radius: 5px;
+}
+
+tbody {
+  border-top: none !important;
+}
+tbody tr {
+  border-bottom: 1px solid #eceff1;
+}
+tbody tr:last-child {
+  border: none;
+}
+tbody tr td {
+  border: none;
+  vertical-align: middle;
+}
