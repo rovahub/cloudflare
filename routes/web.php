@@ -13,6 +13,7 @@ Route::group([], function () {
 
     Route::group(['prefix' => 'zones'], function () {
         Route::get('/', [ZoneController::class, 'index'])->name('cloudflare:zone.index');
-        Route::put('/', [ZoneController::class, 'cachePurge'])->name('cloudflare:zone.cache');
+        Route::put('/cache', [ZoneController::class, 'cachePurge'])->name('cloudflare:zone.cache');
+        Route::put('/proxies', [ZoneController::class, 'proxies'])->name('cloudflare:zone.proxies');
     });
 });
