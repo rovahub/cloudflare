@@ -18,14 +18,11 @@ class ZoneController extends Controller
     }
 
     public function cachePurge(Request $request){
-        $zones = Cloudflare::cachePurgeEverything($request->input('id'));
+        $zones = Cloudflare::cachePurgeEverything($request->input('domain'));
         return $zones;
     }
 
     public function proxies(Request $request){
-        if($request->input('pause')){
-            return Cloudflare::unpause($request->input('id'));
-        }
-        return Cloudflare::pause($request->input('id'));
+        return Cloudflare::enableOrDisable($request->input('domain'));
     }
 }

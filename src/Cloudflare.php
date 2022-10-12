@@ -2,45 +2,47 @@
 
 namespace Rovahub\Cloudflare;
 
-use Illuminate\Config\Repository;
-use Illuminate\Support\Arr;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 use Cloudflare\API\Auth\APIKey as CloudflareAPIKey;
 use Cloudflare\API\Adapter\Guzzle as CloudflareAdapter;
 use Cloudflare\API\Endpoints\Zones as CloudflareZone;
 
 class Cloudflare
 {
-    private $client;
     private $adapter;
-    private $zones;
+    private $zoneService;
 
     public function __construct()
     {
         $key = new CloudflareAPIKey(config('cloudflare.email'), config('cloudflare.api'));
         $this->adapter = new CloudflareAdapter($key);
-        $this->zones = new CloudflareZone($this->adapter);
+        $this->zoneService = new CloudflareZone($this->adapter);
+    }
+
+    public function getZoneDataId($domain)
+    {
+        $zone = $this->listZones([$domain])->result;
+        return $zone[0];
     }
 
     public function listZones($domains = [], $page = 1)
     {
         $domains = implode(',', $domains);
-        return $this->zones->listZones($domains, 'active', $page);
+        return $this->zoneService->listZones($domains, 'active', $page);
     }
 
-    public function cachePurgeEverything($zoneId)
+    public function cachePurgeEverything($domain)
     {
-        return $this->zones->cachePurgeEverything($zoneId);
+        $zoneId = $this->getZoneDataId($domain)->id;
+        return $this->zoneService->cachePurgeEverything($zoneId);
     }
 
-    public function pause($zoneId)
+    public function enableOrDisable($domain)
     {
-        return $this->zones->pause($zoneId);
-    }
-
-    public function unpause($zoneId)
-    {
-        return $this->zones->unpause($zoneId);
+        $zone = $this->getZoneDataId($domain);
+        $paused = $zone->paused;
+        if(!$paused){
+            return $this->zoneService->pause($zone->id);
+        }
+        return $this->zoneService->unpause($zone->id);
     }
 }

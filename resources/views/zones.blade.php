@@ -40,13 +40,14 @@
                 </td>
                 <td>
                     @if(!$zone->paused)
-                        <span onclick="changeProxies('{{ $zone->name }}', '{{ $zone->paused }}', '{{ $zone->id }}')" class="d-flex align-items-center"
+                        <span onclick="changeProxies('{{ $zone->name }}', '{{ $zone->paused }}')"
+                              class="d-flex align-items-center"
                               style="cursor: pointer;">
                             <i class="fa-brands fa-cloudflare fs-3 text-warning me-2"></i>
                             {{ __('cloudflare::zone.enabled') }}
                         </span>
                     @else
-                        <span onclick="changeProxies('{{ $zone->name }}', '{{ $zone->paused }}', '{{ $zone->id }}')"
+                        <span onclick="changeProxies('{{ $zone->name }}', '{{ $zone->paused }}')"
                               class="d-flex align-items-center text-secondary" style="cursor: pointer;">
                             <i class="fa-brands fa-cloudflare fs-3 me-2"></i>
                             {{ __('cloudflare::zone.disabled') }}
@@ -72,7 +73,7 @@
 @endsection
 @section('scripts')
     <script>
-        function deleteCache(domain, id) {
+        function deleteCache(domain) {
             $.confirm({
                 title: `{{__('cloudflare::zone.delete_cache_title')}} ${domain}`,
                 content: '{{__('cloudflare::zone.delete_cache_content')}}',
@@ -88,7 +89,6 @@
                                 url: '{{ route('cloudflare:zone.cache') }}',
                                 data: {
                                     domain,
-                                    id
                                 },
                                 success: () => {
                                     $.alert('Deleted the user!');
@@ -106,7 +106,7 @@
             });
         }
 
-        function changeProxies(domain, pause, id) {
+        function changeProxies(domain, pause) {
             $.confirm({
                 title: !pause ? `{{__('cloudflare::zone.pause_cloudflare_title')}} ${domain}` : '{{__('cloudflare::zone.enable_cloudflare')}}',
                 content: !pause ? '{{__('cloudflare::zone.pause_cloudflare_content')}}' : '',
@@ -123,7 +123,6 @@
                                 data: {
                                     domain,
                                     pause,
-                                    id
                                 },
                                 success: () => {
                                     $.alert('Deleted the user!');
