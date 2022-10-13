@@ -14,7 +14,15 @@ class ZoneController extends Controller
         page_title()->setTitle(__('cloudflare::zone.domain'));
         $zones = Cloudflare::listZones();
         $zones = $zones->result;
-        return view('cloudflare::zones', compact('zones'));
+        return view('cloudflare::zones.index', compact('zones'));
+    }
+
+    public function show($id)
+    {
+        page_title()->setTitle(__('cloudflare::zone.domain'));
+        $zones = Cloudflare::listZones();
+        $zones = $zones->result;
+        return view('cloudflare::zones.detail', compact('zones'));
     }
 
     public function cachePurge(Request $request){
@@ -22,7 +30,7 @@ class ZoneController extends Controller
         return $zones;
     }
 
-    public function proxies(Request $request){
+    public function enable(Request $request){
         return Cloudflare::enableOrDisable($request->input('domain'));
     }
 }

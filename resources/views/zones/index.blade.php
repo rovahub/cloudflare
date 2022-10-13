@@ -18,7 +18,7 @@
                     <a class="alert-link" href="{{ route('cloudflare:zone.index') }}">{{ $zone->name }}</a>
                 </td>
                 <td>
-                    <code>
+                    <code class="text-uppercase">
                         @if($zone->original_registrar)
                             {{ $zone->original_registrar }}
                         @else
@@ -107,7 +107,7 @@
         }
 
         function changeProxies(domain, pause) {
-            $.confirm({
+            const confirm = $.confirm({
                 title: !pause ? `{{__('cloudflare::zone.pause_cloudflare_title')}} ${domain}` : '{{__('cloudflare::zone.enable_cloudflare')}}',
                 content: !pause ? '{{__('cloudflare::zone.pause_cloudflare_content')}}' : '',
                 type: 'info',
@@ -117,12 +117,12 @@
                         text: '{{ __('cloudflare::zone.confirm') }}',
                         btnClass: 'btn-red',
                         action: function () {
+                            // confirm.showLoading();
                             $.ajax({
                                 method: 'PUT',
-                                url: '{{ route('cloudflare:zone.proxies') }}',
+                                url: '{{ route('cloudflare:zone.enable') }}',
                                 data: {
                                     domain,
-                                    pause,
                                 },
                                 success: () => {
                                     $.alert('Deleted the user!');
